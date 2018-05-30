@@ -38,6 +38,7 @@ namespace ReminderCenter
 
             StartPosition = FormStartPosition.Manual;
             ShowInTaskbar = false;
+            Id = "0";
             Message = message;
             Timestamp = DateTime.Now.ToString();
         }
