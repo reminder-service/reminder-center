@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 
 namespace ReminderCenter.ApiClient
@@ -41,11 +38,26 @@ namespace ReminderCenter.ApiClient
             HttpWebRequest apiRequest = CreateBaseRequest(builder.Uri);
             apiRequest.Method = Http.Get;
             HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponseAsync().Result;
-            
+
+            ApiMessage[] messages;
             using (var reader = new StreamReader(apiResponse.GetResponseStream()))
             {
-                return JsonConvert.DeserializeObject<ApiMessage[]>(reader.ReadToEnd());
+                messages = JsonConvert.DeserializeObject<ApiMessage[]>(reader.ReadToEnd());
             }
+
+            AcknowledgeMessages(clientIdentifier);
+            return messages;
+        }
+
+        private void AcknowledgeMessages(string clientIdentifier)
+        {
+            UriBuilder builder = CreateBaseUriBuilder();
+            builder.Path += IDENTIFIER;
+            builder.Query = IDENTIFIER + "=" + clientIdentifier;
+
+            HttpWebRequest apiRequest = CreateBaseRequest(builder.Uri);
+            apiRequest.Method = "PATCH";
+            HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponseAsync().Result;
         }
 
         private HttpWebRequest CreateBaseRequest(Uri uri)
