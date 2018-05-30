@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.25928.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder Center", "Reminder Center\Reminder Center.csproj", "{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Debug|Any CPU.ActiveCfg = Release|x64
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Debug|Any CPU.Build.0 = Release|x64
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Debug|x64.ActiveCfg = Debug|x64
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Debug|x64.Build.0 = Debug|x64
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Release|x64.ActiveCfg = Release|Any CPU
+		{12D8B5E6-959F-4AF9-BC99-0848B215D4D4}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4416A098-B829-491C-BCAD-007D866F2BD5}
+	EndGlobalSection
+EndGlobal
