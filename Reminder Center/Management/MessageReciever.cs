@@ -51,6 +51,13 @@ namespace ReminderCenter.Management
                     {
                         MessageHandler.AddMessage("Connection Exception: " + exception.Message);
                     }
+                    catch (AggregateException exception)
+                    {
+                        foreach (Exception innerException in exception.InnerExceptions)
+                        {
+                            MessageHandler.AddMessage(innerException.Message);
+                        }
+                    }
                     catch (Exception exception)
                     {
                         MessageHandler.AddMessage(exception.Message);

@@ -35,9 +35,9 @@ namespace ReminderCenter.ApiClient
             builder.Path += MESSAGE;
             builder.Query = IDENTIFIER + "=" + clientIdentifier;
 
-            HttpWebRequest apiRequest = CreateBaseRequest(builder.Uri);
+            WebRequest apiRequest = CreateBaseRequest(builder.Uri);
             apiRequest.Method = Http.Get;
-            HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponseAsync().Result;
+            WebResponse apiResponse = apiRequest.GetResponseAsync().Result;
 
             ApiMessage[] messages;
             using (var reader = new StreamReader(apiResponse.GetResponseStream()))
@@ -55,26 +55,29 @@ namespace ReminderCenter.ApiClient
             builder.Path += IDENTIFIER;
             builder.Query = IDENTIFIER + "=" + clientIdentifier;
 
-            HttpWebRequest apiRequest = CreateBaseRequest(builder.Uri);
+            WebRequest apiRequest = CreateBaseRequest(builder.Uri);
             apiRequest.Method = "PATCH";
-            HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponseAsync().Result;
+            WebResponse apiResponse = apiRequest.GetResponseAsync().Result;
         }
 
-        private HttpWebRequest CreateBaseRequest(Uri uri)
+        private WebRequest CreateBaseRequest(Uri uri)
         {
-            HttpWebRequest apiRequest = (HttpWebRequest)WebRequest.Create(uri);
-            string credentials = Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(username + ":" + password));
-            apiRequest.Headers.Add("Authorization", "Basic " + credentials);
+            WebRequest apiRequest = WebRequest.Create(uri);
+            apiRequest.Credentials = GetCredential(uri);
+            apiRequest.PreAuthenticate = true;
             return apiRequest;
+        }
+
+        private CredentialCache GetCredential(Uri uri)
+        {
+            CredentialCache credentialCache = new CredentialCache();
+            credentialCache.Add(uri, "Basic", new NetworkCredential(username, password));
+            return credentialCache;
         }
 
         private UriBuilder CreateBaseUriBuilder()
         {
             UriBuilder builder = new UriBuilder(baseUri);
-            if (builder.Scheme == "")
-            {
-                builder.Scheme = "http";
-            }
             return builder;
         }
 
