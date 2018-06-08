@@ -14,3 +14,7 @@ Reading client for reminder system.
 
 ### Tray menu
 ![Alt text](/.project/readme_tray.png?raw=true "Tray menu Example")
+
+## Build Environment
+ * Visual Studio 2017
+ * Net Framework 4.5.2
